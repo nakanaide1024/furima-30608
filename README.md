@@ -18,18 +18,19 @@
 - has_many :Comments
 - has_many :Products
 - has_many :Purchasers
+- has_many :Buyers
 
 ## Productsテーブル
 
 | column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| product_name          | string     | null: false                    |
+| name                  | string     | null: false                    |
 | description           | string     | null: false                    |
 | category_id           | integer    | null: false                    |
 | condition_id          | integer    | null: false                    |
 | delivery_charger_id   | integer    | null: false                    |
 | prefecture_id         | integer    | null: false                    |
-| delivery_date         | integer    | null: false                    |
+| delivery_date_id      | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
 ### Association
@@ -37,20 +38,17 @@
 - has_many :Comments
 - belongs_to :User
 - has_one :Purchaser
+- has_one :Buyer
 
 ## Purchaserテーブル
 
 | column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| credit_number    | integer    | null: false                    |
-| expiration_month | integer    | null: false                    |
-| expiration_year  | integer    | null: false                    |
-| security_code    | integer    | null: false                    |
-| post_code        | integer    | null: false                    |
+| post_code        | string     | null: false                    |
 | prefecture_id    | integer    | null: false                    |
 | city             | string     | null: false                    |
-| house_number     | integer    | null: false                    |
-| building_number  | string     | null: false                    |
+| house_number     | string     | null: false                    |
+| building_number  | string     |                                |
 | phon_number      | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true | 
 
@@ -66,6 +64,18 @@
 | text    | text       | null: false                    |
 | user    | references | null: false, foreign_key: true |
 | product | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :User
+- belongs_to :Product
+
+## Buyers
+ 
+| column  | Type    | Options                        |
+| ------- | ------- | ------------------------------ |
+| user    | integer | null: false, foreign_key: true |
+| product | integer | null: false, foreign_key: true |
 
 ### Association
 
