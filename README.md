@@ -17,7 +17,6 @@
 
 - has_many :Comments
 - has_many :Products
-- has_many :Purchasers
 - has_many :Buyers
 
 ## Productsテーブル
@@ -37,10 +36,9 @@
 
 - has_many :Comments
 - belongs_to :User
-- has_one :Purchaser
 - has_one :Buyer
 
-## Purchaserテーブル
+## Addressesテーブル
 
 | column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
@@ -49,13 +47,12 @@
 | city             | string     | null: false                    |
 | house_number     | string     | null: false                    |
 | building_number  | string     |                                |
-| phon_number      | integer    | null: false                    |
-| user             | references | null: false, foreign_key: true | 
+| phon_number      | string     | null: false                    |
+| Buyer            | references | null: false, foreign_key: true | 
 
 ### Association
 
-- belongs_to :User
-- belongs_to :Product
+- belongs_to :Buyer
 
 ## Commentsテーブル
 
@@ -72,12 +69,13 @@
 
 ## Buyers
  
-| column  | Type    | Options                        |
-| ------- | ------- | ------------------------------ |
-| user    | integer | null: false, foreign_key: true |
-| product | integer | null: false, foreign_key: true |
+| column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :User
 - belongs_to :Product
+- has_one :Address
