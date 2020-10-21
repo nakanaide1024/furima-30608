@@ -10,16 +10,6 @@ RSpec.describe User, type: :model do
       it 'nickname,email,password,password_confirmation,first_name,last_name,first_name_kana,last_name_kana,birth_dateが正しく存在すれば登録できること' do
         expect(@user).to be_valid
       end
-      it 'ユーザー本名は全角平仮名のみでも登録できる' do
-        @user.last_name = "しもだ"
-        @user.first_name = "のりこ"
-        expect(@user).to be_valid
-      end
-      it 'ユーザー本名は全角カタカナのみでも登録できる' do
-        @user.last_name = "シモダ"
-        @user.first_name = "ノリコ"
-        expect(@user).to be_valid
-      end
     end
     context 'ユーザー登録が上手くいかない時' do
       it 'nicknameが空では登録できない' do
