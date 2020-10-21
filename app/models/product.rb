@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :delivery_charger
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :delivery_date
+  has_one_attached :image
 
 
   belongs_to :User
