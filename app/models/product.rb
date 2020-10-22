@@ -23,7 +23,7 @@ class Product < ApplicationRecord
                       numericality: { greater_than:300, less_than:9999999}
   end
 
-  with_options numericality: { other_then: 1 } do
+  with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :condition_id
     validates :delivery_charger_id
