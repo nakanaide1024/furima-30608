@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   has_one_attached :image
 
 
-  belongs_to :User
+  belongs_to :user
 
   with_options presence: true do
     validates :image
@@ -19,7 +19,8 @@ class Product < ApplicationRecord
     validates :delivery_charger
     validates :prefecture
     validates :delivery_date
-    validates :price, format: { with:/\A[0-9]+\z/}
+    validates :price, format: { with:/\A[0-9]+\z/},
+                      numericality: { greater_than:300, less_than:9999999}
   end
 
   with_options numericality: { other_then: 1 } do
