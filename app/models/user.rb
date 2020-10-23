@@ -4,21 +4,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  with_options presence: true do 
+  has_many :Products
+
+  with_options presence: true do
     validates :nickname
-    
-    VALID_PASSWORD_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/
-    validates :first_name, format: {with: VALID_PASSWORD_NAME_REGEX}
-    validates :last_name, format: {with: VALID_PASSWORD_NAME_REGEX}             
-    
-    VALID_PASSWORD_KANA_REGEX = /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/
-    validates :first_name_kana, format: {with: VALID_PASSWORD_KANA_REGEX}
-    validates :last_name_kana, format: {with: VALID_PASSWORD_KANA_REGEX}
+
+    VALID_PASSWORD_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
+    validates :first_name, format: { with: VALID_PASSWORD_NAME_REGEX }
+    validates :last_name, format: { with: VALID_PASSWORD_NAME_REGEX }
+
+    VALID_PASSWORD_KANA_REGEX = /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/.freeze
+    validates :first_name_kana, format: { with: VALID_PASSWORD_KANA_REGEX }
+    validates :last_name_kana, format: { with: VALID_PASSWORD_KANA_REGEX }
     validates :birth_date
-  
+
     validates :email, uniqueness: { case_sensitive: false }
     validates :password, length: { minimum: 6 },
-                           format: { with: /\A[a-z0-9]+\z/i },
-                           confirmation: true
-  end                         
+                         format: { with: /\A[a-z0-9]+\z/i },
+                         confirmation: true
+  end
 end
