@@ -126,7 +126,7 @@
     <%= link_to '新規投稿商品', new_product_path, class: "subtitle" %>
     <ul class='item-lists'>
      
-      <% if @product.present?%>
+      <% if @products.present?%>
       <% @products.each do |product| %>
       <li class='list'>
         <div class='item-img-content'>
