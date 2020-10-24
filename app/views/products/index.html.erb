@@ -129,8 +129,9 @@
       <% if @products.present?%>
       <% @products.each do |product| %>
       <li class='list'>
+      <%= link_to product_path(product.id) do%>
         <div class='item-img-content'>
-          <%= image_tag product.image, class: "item-img" %>
+          <%= image_tag product.image.variant(resize: '300x300'), class: "item-img" %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
           <%#<div class='sold-out'>
@@ -151,6 +152,7 @@
             </div>
           </div>
         </div>
+        <% end %>
       </li>
       <% end %>
 
