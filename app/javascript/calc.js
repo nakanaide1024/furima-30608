@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function calc (){
+function calc (){
   const itemPrice = document.getElementById("item-price");
   const addTaxPrice = document.getElementById("add-tax-price");
   const profit = document.getElementById("profit");
@@ -9,4 +9,6 @@ document.addEventListener("turbolinks:load", function calc (){
     addTaxPrice.innerHTML = `${tax}`;
     profit.innerHTML = `${priceNum - tax}`;
   });
-})
+}
+
+setInterval(calc, 1000);

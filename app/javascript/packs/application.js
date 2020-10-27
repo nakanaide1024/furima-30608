@@ -8,7 +8,6 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../calc")
-require("turbolinks")
 require("../card")
 
 
