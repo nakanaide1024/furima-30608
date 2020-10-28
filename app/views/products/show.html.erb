@@ -29,10 +29,9 @@
     <p class='or-text'>or</p>
     <%= link_to '削除', product_path(@product.id), method: :DELETE, class:'item-destroy' %>
 
-    <% elsif user_signed_in? %>
-    <% if @product.buyer.blank? %>
+    <% elsif user_signed_in? && @product.buyer.blank? %>
+    
     <%= link_to '購入画面に進む', product_buyers_path(@product.id), class:"item-red-btn"%>
-    <% end %>
 
 
     <% end %>
