@@ -3,15 +3,15 @@ class BuyerAddress
   attr_accessor :user_id, :product_id, :post_code, :prefecture_id, :city, :house_number, :building_number, :phon_number, :token
 
   with_options presence: true do
-    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
+    validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :prefecture_id
     validates :city
     validates :house_number
-    validates :phon_number, format: {with: /\A\d{10,11}\z/}
+    validates :phon_number, format: { with: /\A\d{10,11}\z/ }
     validates :token
   end
 
-  validates :prefecture_id, numericality: {other_than: 1}
+  validates :prefecture_id, numericality: { other_than: 1 }
 
   def save
     buyer = Buyer.create(user_id: user_id, product_id: product_id)

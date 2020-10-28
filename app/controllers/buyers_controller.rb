@@ -1,7 +1,6 @@
 class BuyersController < ApplicationController
-  before_action :authenticate_user!, only: [ :index]
+  before_action :authenticate_user!, only: [:index]
   before_action :move_to_index, only: [:index]
-  
 
   def index
     @product = Product.find(params[:product_id])
@@ -28,18 +27,16 @@ class BuyersController < ApplicationController
 
   def pay_product
     @product = Product.find(params[:product_id])
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @product.price,
       card: buyer_params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
-  
+
   def move_to_index
     @product = Product.find(params[:product_id])
-    if current_user.id == @product.user.id || @product.buyer.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @product.user.id || @product.buyer.present?
   end
 end
