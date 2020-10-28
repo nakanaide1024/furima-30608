@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_action :move_to_index, only: [:edit, :destroy]
 
   def index
-    @products = Product.includes(:user).order('created_at DESC')
+    @products = Product.includes([:user,:buyer]).order('created_at DESC')
   end
 
   def new
